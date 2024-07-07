@@ -21,6 +21,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v44
         with:
+          matrix: true
           files_yaml: |
             app1-prod:
               - app1-prod/**
@@ -28,6 +29,8 @@ jobs:
               - app2-dev/**
             app3-uat:
               - app3-uat/**
+      - name: List all changed files
+        run: echo '${{ steps.changed-files.outputs.changed_keys }}'
         # To compare changes between the current commit and the last pushed remote commit set `since_last_remote_commit: true`. e.g
         # with:
         #   since_last_remote_commit: true

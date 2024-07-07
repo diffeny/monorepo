@@ -18,6 +18,8 @@ jobs:
   changed-files:
     runs-on: ubuntu-latest  # windows-latest || macos-latest
     name: Test changed-files
+    outputs:
+      apps: ${{ steps.changed-files.outputs.changed_keys }}
     steps:
       - uses: actions/checkout@v4
         with:

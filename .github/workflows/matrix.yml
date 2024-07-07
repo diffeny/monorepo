@@ -39,7 +39,7 @@ jobs:
     name: Run Matrix Job
     runs-on: ubuntu-latest
     needs: [changed-files]
-    if: ${{ fromJSON(needs.changed-files.outputs.apps) != '' }}
+    if: ${{ needs.changes.outputs.apps != '[]' && needs.changes.outputs.apps != '' }}
     strategy:
       matrix:
         files: ${{ fromJSON(needs.changed-files.outputs.apps) }}

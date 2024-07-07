@@ -1,0 +1,12 @@
+name: when-pushed
+on:
+  push:
+    branches:
+      - main
+jobs:
+  display:
+    runs-on:  ubuntu-latest
+    name: Display a message
+    steps:
+      - name: display
+        run: echo 'hello'

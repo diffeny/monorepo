@@ -1,4 +1,4 @@
-name: app2-prod
+name: app2-dev
 on:
   push:
     paths:

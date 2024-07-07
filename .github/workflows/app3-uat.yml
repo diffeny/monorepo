@@ -1,4 +1,4 @@
-name: app1-prod
+name: app3-uat
 on:
   push:
     paths:

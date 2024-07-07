@@ -1,0 +1,11 @@
+name: app1-prod
+on:
+  push:
+    paths:
+      - app3-uat/**
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show current folder
+        run: echo $GITHUB_WORKSPACE/app3-uat

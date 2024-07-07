@@ -1,0 +1,11 @@
+name: app2-prod
+on:
+  push:
+    paths:
+      - app2-dev/**
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show current folder
+        run: echo $GITHUB_WORKSPACE/app2-dev

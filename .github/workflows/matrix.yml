@@ -52,6 +52,6 @@ jobs:
         run: echo "${{toJSON(github)}}"
       - name: Test
         run: |
-          echo ${{ matrix.files }}
+          echo ${{ matrix.files }} $(pwd)
         working-directory: "${{github.workspace}}/${{matrix.files}}"
 

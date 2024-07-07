@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest  # windows-latest || macos-latest
     name: Test changed-files
     outputs:
-      apps: ${{ steps.changed-files.outputs.changed_keys }}
+      files: ${{ steps.changed-files.outputs.all_changed_files }}
     steps:
       - uses: actions/checkout@v4
       # -----------------------------------------------------------------------------------------------------------
@@ -22,15 +22,15 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           matrix: true
-          files_yaml: |
-            app1-prod:
-              - app1-prod/**
-            app2-dev:
-              - app2-dev/**
-            app3-uat:
-              - app3-uat/**
+#          files_yaml: |
+#            app1-prod:
+#              - app1-prod/**
+#            app2-dev:
+#              - app2-dev/**
+#            app3-uat:
+#              - app3-uat/**
       - name: List all changed files
-        run: echo '${{ steps.changed-files.outputs.changed_keys }}'
+        run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
         # To compare changes between the current commit and the last pushed remote commit set `since_last_remote_commit: true`. e.g
         # with:
         #   since_last_remote_commit: true
@@ -41,7 +41,7 @@ jobs:
     needs: [changed-files]
     strategy:
       matrix:
-        files: ${{ fromJSON(needs.changed-files.outputs.apps) }}
+        files: ${{ fromJSON(needs.changed-files.outputs.files) }}
       max-parallel: 4
       fail-fast: false
     steps:
